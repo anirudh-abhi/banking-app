@@ -54,5 +54,5 @@ resource "aws_instance" "testing-server" {
 
 # Output the public IP address of the instance
 output "instance_public_ip" {
-  value = aws_instance.web.public_ip
+  value = aws_instance.testing-server.public_ip
 }
