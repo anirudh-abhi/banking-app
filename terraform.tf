@@ -1,6 +1,6 @@
 # Specify the provider
 provider "aws" {
-  region = "us-west-1"
+  region = "us-east-1"  # Update with your desired AWS region
 }
 
 # Create a security group to allow SSH and HTTP access
@@ -15,8 +15,8 @@ resource "aws_security_group" "web_sg" {
   }
 
   ingress {
-    from_port   = 0  # Changed from 0.0.0.0/0 to 0
-    to_port     = 0  # Changed from 0.0.0.0/0 to 0
+    from_port   = 0  # Changed from 0.0.0.0/0 to 0 for all traffic
+    to_port     = 0  # Changed from 0.0.0.0/0 to 0 for all traffic
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -32,7 +32,7 @@ resource "aws_security_group" "web_sg" {
 # Create an EC2 instance
 resource "aws_instance" "web" {
   ami             = "ami-0e41ff7d11ac11810"  # Update with your preferred AMI ID
-  instance_type   = "t2.medium"
+  instance_type   = "t2.medium"  # Update with your desired instance type
   key_name        = "next one.pem"  # Update with your key pair name
   security_groups = [aws_security_group.web_sg.name]
 
@@ -49,7 +49,7 @@ resource "aws_instance" "web" {
   # Optionally add a user data script to configure the instance at launch
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World! its testing server" > /var/www/html/index.html
+              echo "Hello, World! This is a testing server" > /var/www/html/index.html
               EOF
 }
 
