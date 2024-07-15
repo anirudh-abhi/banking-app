@@ -30,7 +30,7 @@ resource "aws_security_group" "web_sg" {
 }
 
 # Create an EC2 instance
-resource "aws_instance" "web" {
+resource "aws_instance" "testing-server" {
   ami             = "ami-0e41ff7d11ac11810"  # Update with your preferred AMI ID
   instance_type   = "t2.medium"  # Update with your desired instance type
   key_name        = "next one.pem"
