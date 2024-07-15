@@ -33,8 +33,7 @@ resource "aws_security_group" "web_sg" {
 resource "aws_instance" "web" {
   ami             = "ami-0e41ff7d11ac11810"  # Update with your preferred AMI ID
   instance_type   = "t2.medium"  # Update with your desired instance type
-  key_name        = "next one.pem"  # Update with your key pair name
-  security_groups = [aws_security_group.web_sg.name]
+  key_name        = "next one.pem"
 
   tags = {
     Name = "testing-server"
@@ -43,7 +42,7 @@ resource "aws_instance" "web" {
   # Optionally add a block device mapping to use EBS storage
   root_block_device {
     volume_type = "gp2"
-    volume_size = 10
+    volume_size = 16
   }
 
   # Optionally add a user data script to configure the instance at launch
