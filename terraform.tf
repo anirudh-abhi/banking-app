@@ -32,7 +32,7 @@ resource "aws_security_group" "web_sg" {
 # Create an EC2 instance
 resource "aws_instance" "web" {
   ami             = "ami-0e41ff7d11ac11810"  # Update with your preferred AMI ID
-  instance_type   = "t2.micro"
+  instance_type   = "t2.medium"
   key_name        = "next one.pem"  # Update with your key pair name
   security_groups = [aws_security_group.web_sg.name]
 
