@@ -15,9 +15,9 @@ resource "aws_security_group" "web_sg" {
   }
 
   ingress {
-    from_port   = 0.0.0.0/0
-    to_port     = 0.0.0.0/0
-    protocol    = "All traffic"
+    from_port   = 0  # Changed from 0.0.0.0/0 to 0
+    to_port     = 0  # Changed from 0.0.0.0/0 to 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -31,13 +31,13 @@ resource "aws_security_group" "web_sg" {
 
 # Create an EC2 instance
 resource "aws_instance" "web" {
-  ami             = "ami-0e41ff7d11ac11810"
+  ami             = "ami-0e41ff7d11ac11810"  # Update with your preferred AMI ID
   instance_type   = "t2.micro"
-  key_name        = "next one.pem"
+  key_name        = "next one.pem"  # Update with your key pair name
   security_groups = [aws_security_group.web_sg.name]
 
   tags = {
-    Name = "testing server"
+    Name = "testing-server"
   }
 
   # Optionally add a block device mapping to use EBS storage
