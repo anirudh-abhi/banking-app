@@ -1,6 +1,6 @@
 # Specify the provider
 provider "aws" {
-  region = "us-east-1a"  # Update with your desired AWS region
+  region = "us-east-1"  # Update with your desired AWS region
 }
 
 # Create a security group to allow SSH and HTTP access
