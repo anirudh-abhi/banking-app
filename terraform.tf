@@ -30,30 +30,29 @@ resource "aws_security_group" "web_sg" {
 }
 
 # Create an EC2 instance
-resource "aws_instance" "testing-server" {
-  ami             = "ami-0e41ff7d11ac11810"  # Update with your preferred AMI ID
+resource "aws_instance" "prod-server" {
+  ami             = "ami-0a0e5d9c7acc336f1"  # Update with your preferred AMI ID
   instance_type   = "t2.medium"  # Update with your desired instance type
-  key_name        = "next one"
+  key_name        = "ubuntukeypair"
   security_groups = [aws_security_group.web_sg.name]
 
   tags = {
-    Name = "testing-server"
+    Name = "prod-server"
   }
 
   # Optionally add a block device mapping to use EBS storage
   root_block_device {
     volume_type = "gp2"
-    volume_size = 16
+    volume_size = 15
   }
 
   # Optionally add a user data script to configure the instance at launch
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World! This is a testing server" > /var/www/html/index.html
+              echo "Hello, World! This is a master-123" > /var/www/html/index.html
               EOF
 }
 
 # Output the public IP address of the instance
 output "instance_public_ip" {
-  value = aws_instance.testing-server.public_ip
-}
+  value = aws_instance.prod-server.public_ip
