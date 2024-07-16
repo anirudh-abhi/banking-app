@@ -49,7 +49,7 @@ resource "aws_instance" "prod-server" {
   # Optionally add a user data script to configure the instance at launch
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World! This is a master-123" > /var/www/html/index.html
+              echo "Hello, World! This is a prod-server" > /var/www/html/index.html
               EOF
 }
 
