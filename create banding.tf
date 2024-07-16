@@ -122,8 +122,6 @@ resource "aws_eip" "proj-eip" {
  network_interface = aws_network_interface.proj-ni.id
  associate_with_private_ip = "172.31.26.112"
 }
-
-
 # Creating an ubuntu EC2 instance
 resource "aws_instance" "Prod-Server" {
  ami = "ami-0a0e5d9c7acc336f1"
