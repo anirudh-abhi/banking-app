@@ -52,8 +52,10 @@ resource "aws_subnet" "proj-subnet" {
  }
 }
 
-# Associating the subnet with the route table
-resource "aws_route_table_association" "proj-rt-sub-assoc" {
+# Associating the subnet with the 
+route table
+resource "aws_route_table_association" 
+"proj-rt-sub-assoc" {
 subnet_id = aws_subnet.proj-subnet.id
 route_table_id = aws_route_table.proj-rt.id
 }
