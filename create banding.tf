@@ -64,9 +64,11 @@ aws_route_table.proj-rt.id
 }
 
 # Creating a Security Group
-resource "aws_security_group" "proj-sg" {
+resource "aws_security_group" 
+"proj-sg" {
  name = "proj-sg"
- description = "Enable web traffic for the project"
+ description = "Enable web traffic for 
+the project"
  vpc_id = aws_vpc.proj-vpc.id
  ingress {
     from_port   = 0
