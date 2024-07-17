@@ -52,7 +52,8 @@ resource "aws_subnet" "proj-subnet" {
  }
 }
 
-# Associating the subnet with the route table
+# Associating the subnet with the 
+route table
 resource 
 "aws_route_table_association"
 "proj-rt-sub-assoc" {
