@@ -46,16 +46,14 @@ resource "aws_route_table" "proj-rt" {
 resource "aws_subnet" "proj-subnet" {
  vpc_id = aws_vpc.proj-vpc.id
  cidr_block = "10.0.1.0/24"
- availability_zone = "us-east-1"
+ availability_zone = "ap-south-1b"
  tags = {
  Name = "subnet1"
  }
 }
 
-# Associating the subnet with the 
-route table
-resource "aws_route_table_association" 
-"proj-rt-sub-assoc" {
+# Associating the subnet with the route table
+resource "aws_route_table_association" "proj-rt-sub-assoc" {
 subnet_id = aws_subnet.proj-subnet.id
 route_table_id = aws_route_table.proj-rt.id
 }
@@ -114,7 +112,7 @@ resource "aws_security_group" "proj-sg" {
 # Creating a new network interface
 resource "aws_network_interface" "proj-ni" {
  subnet_id = aws_subnet.proj-subnet.id
- private_ips = ["172.31.26.112"]
+ private_ips = ["10.0.1.10"]
  security_groups = [aws_security_group.proj-sg.id]
 }
 
@@ -122,8 +120,10 @@ resource "aws_network_interface" "proj-ni" {
 resource "aws_eip" "proj-eip" {
  vpc = true
  network_interface = aws_network_interface.proj-ni.id
- associate_with_private_ip = "172.31.26.112"
+ associate_with_private_ip = "10.0.1.10"
 }
+
+
 # Creating an ubuntu EC2 instance
 resource "aws_instance" "Prod-Server" {
  ami = "ami-0a0e5d9c7acc336f1"
@@ -142,4 +142,3 @@ resource "aws_instance" "Prod-Server" {
  Name = "Prod-Server"
  }
 }
- 
