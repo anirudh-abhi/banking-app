@@ -69,7 +69,7 @@ resource "aws_security_group"
  name = "proj-sg"
  description = "Enable web traffic for 
 the project"
- vpc_id = aws_vpc.proj-vpc.id
+ vpc_id = vpc-06a79398700e61cf1
  ingress {
     from_port   = 0
     to_port     = 0
