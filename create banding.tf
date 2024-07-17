@@ -46,30 +46,23 @@ resource "aws_route_table" "proj-rt" {
 resource "aws_subnet" "proj-subnet" {
  vpc_id = aws_vpc.proj-vpc.id
  cidr_block = "10.0.1.0/24"
- availability_zone = "us-east-1"
+ availability_zone = "ap-south-1b"
  tags = {
  Name = "subnet1"
  }
 }
 
-# Associating the subnet with the 
-route table
-resource 
-"aws_route_table_association"
-"proj-rt-sub-assoc" {
-subnet_id =
-aws_subnet.proj-subnet.id
-route_table_id =
-aws_route_table.proj-rt.id
+# Associating the subnet with the route table
+resource "aws_route_table_association" "proj-rt-sub-assoc" {
+subnet_id = aws_subnet.proj-subnet.id
+route_table_id = aws_route_table.proj-rt.id
 }
 
 # Creating a Security Group
-resource "aws_security_group" 
-"proj-sg" {
+resource "aws_security_group" "proj-sg" {
  name = "proj-sg"
- description = "Enable web traffic for 
-the project"
- vpc_id = vpc-06a79398700e61cf1
+ description = "Enable web traffic for the project"
+ vpc_id = aws_vpc.proj-vpc.id
  ingress {
     from_port   = 0
     to_port     = 0
@@ -143,9 +136,9 @@ resource "aws_instance" "Prod-Server" {
  }
  user_data  = <<-EOF
  #!/bin/bash
-     sudo apt-get update -y
+     apt update -y
  EOF
  tags = {
- Name = "Prod-Server"
+ Name = "PROD-SERVER"
  }
 }
